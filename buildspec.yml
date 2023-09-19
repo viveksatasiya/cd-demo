@@ -22,9 +22,9 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER .
+      - docker build -t $ECR_REPOSITORY:$CODEBUILD_RESOLVED_SOURCE_VERSION .
       - echo "Pushing Docker image to ECR..."
-      - docker push $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER
+      - docker push $ECR_REPOSITORY:$CODEBUILD_RESOLVED_SOURCE_VERSION
 
 artifacts:
   files: 'Dockerfile'

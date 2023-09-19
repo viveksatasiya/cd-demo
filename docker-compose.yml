@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: 671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo:$CODEBUILD_BUILD_NUMBER
+    image: 671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo:$CODEBUILD_RESOLVED_SOURCE_VERSION
     ports:
       - "3000:3000"
     environment:
