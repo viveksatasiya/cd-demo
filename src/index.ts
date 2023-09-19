@@ -1,16 +1,13 @@
+import config from 'config';
 import express from 'express';
-import { HealthCheckController } from './presentation/controllers/HealthCheckController';
+import healthCheckRoutes from './presentation/routes/healthCheckRoutes';
 
 const app = express();
-const port = 3000;
+const port = config.get('port');
 
-const healthCheckController = new HealthCheckController();
-
-app.get('/health', (req, res) => {
-  const result = healthCheckController.check();
-  res.status(200).json(result);
-});
+// Use routes
+app.use('/', healthCheckRoutes);
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}/`);
+  console.log(`Server running on http://localhost:${port}/`);
 });
