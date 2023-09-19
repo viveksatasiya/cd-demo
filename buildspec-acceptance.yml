@@ -1,5 +1,9 @@
 version: 0.2
 
+env:
+  variables:
+    ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
+
 phases:
   install:
     commands:
@@ -8,7 +12,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 671939990958.dkr.ecr.ap-south-1.amazonaws.com
+      - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $ECR_REPOSITORY
       - echo Pulling the latest Docker image...
       - docker-compose pull app
   build:
