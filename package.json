@@ -31,9 +31,10 @@
     "start": "node dist/index.js",
     "start:dev": "ts-node src/index.ts",
     "test:unit": "jest",
-    "test:dev:acceptance": "NODE_ENV=acceptance-test npx cucumber-js",
+    "test:dev:acceptance": "npx cucumber-js",
     "test": "npm run test:unit && npm run test:acceptance",
-    "dev": "NODE_ENV=development concurrently \"npm:start:dev\" \"npm:test:dev:acceptance\""
+    "dev": "NODE_ENV=development concurrently \"npm:start:dev\" \"npm:test:dev:acceptance\"",
+    "test:acceptance": "NODE_ENV=acceptance-test npx cucumber-js"
   },
   "repository": {
     "type": "git",

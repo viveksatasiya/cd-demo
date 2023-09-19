@@ -3,6 +3,7 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
+    COMMIT_HASH: $(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) # Shorten the commit hash
 
 phases:
   install:
@@ -22,9 +23,9 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t $ECR_REPOSITORY:$CODEBUILD_RESOLVED_SOURCE_VERSION .
+      - docker build -t $ECR_REPOSITORY:$COMMIT_HASH .
       - echo "Pushing Docker image to ECR..."
-      - docker push $ECR_REPOSITORY:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - docker push $ECR_REPOSITORY:$COMMIT_HASH
 
 artifacts:
   files: 'Dockerfile'
