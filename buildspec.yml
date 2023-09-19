@@ -3,7 +3,6 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
-    IMAGE_TAG: $CODEBUILD_BUILD_NUMBER
 
 phases:
   install:
@@ -23,9 +22,9 @@ phases:
   build:
     commands:
       - echo "Building Docker image..."
-      - docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
+      - docker build -t $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER .
       - echo "Pushing Docker image to ECR..."
-      - docker push $ECR_REPOSITORY:$IMAGE_TAG
+      - docker push $ECR_REPOSITORY:$CODEBUILD_BUILD_NUMBER
 
 artifacts:
   files: 'Dockerfile'
