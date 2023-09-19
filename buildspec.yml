@@ -3,7 +3,7 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
-    COMMIT_HASH: $(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) # Shorten the commit hash
+    COMMIT_HASH: 'latest'
 
 phases:
   install:
@@ -19,6 +19,7 @@ phases:
       - npm run test:unit
       - echo "Logging in to Amazon ECR..."
       - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $ECR_REPOSITORY
+      - COMMIT_HASH=$(bash -c "echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7")
 
   build:
     commands:

@@ -3,11 +3,11 @@ version: 0.2
 env:
   variables:
     ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
-    COMMIT_HASH: $(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7) # Shorten the commit hash
-
+    COMMIT_HASH: 'latest'
 phases:
   install:
     commands:
+      - COMMIT_HASH=$(bash -c "echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7")
       - echo Installing project dependencies...
       - npm install
   pre_build:
