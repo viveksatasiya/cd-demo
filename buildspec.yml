@@ -29,9 +29,9 @@ phases:
       - docker push $ECR_REPOSITORY:$COMMIT_HASH
 
   post_build:
-  commands:
-    - echo "Storing Docker image tag in Parameter Store..."
-    - aws ssm put-parameter --name "/environments/acceptance/MicroserviceBackendA/version" --value "$COMMIT_HASH" --type "String" --overwrite
+    commands:
+      - echo "Storing Docker image tag in Parameter Store..."
+      - aws ssm put-parameter --name "/environments/acceptance/MicroserviceBackendA/version" --value "$COMMIT_HASH" --type "String" --overwrite
 
 artifacts:
   files: 'Dockerfile'
