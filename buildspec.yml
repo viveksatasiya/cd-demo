@@ -33,7 +33,7 @@ phases:
       - echo "Storing Docker image tag in Parameter Store..."
       - aws ssm put-parameter --name "/environments/acceptance/MicroserviceBackendA/version" --value "$COMMIT_HASH" --type "String" --overwrite
       - echo "Starting Unified Deployment Pipeline..."
-      - aws codepipeline start-pipeline-execution --name cd-demo --cli-input-json "{\"clientRequestToken\":\"MicroserviceBackendA:$COMMIT_HASH\"}"
+      - aws codepipeline start-pipeline-execution --name cd-demo --cli-input-json "{\"clientRequestToken\":\"MicroserviceBackendA-$COMMIT_HASH\"}"
 
 artifacts:
   files: 'Dockerfile'
