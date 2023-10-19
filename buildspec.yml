@@ -4,7 +4,7 @@ env:
   variables:
     ECR_REPOSITORY: '671939990958.dkr.ecr.ap-south-1.amazonaws.com/cd-demo'
     COMMIT_HASH: 'latest'
-    S3_BUCKET: 'codepipeline-ap-south-1-751168068033' # Update this with your S3 bucket name
+    S3_BUCKET: 'avesta-analytics' # Update this with your S3 bucket name
     MICROSERVICE_NAME: 'MicroserviceBackendA' # Update this with your microservice name
 
 phases:
